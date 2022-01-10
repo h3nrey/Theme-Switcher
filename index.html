@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Switcher</title>
+
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        div.dark-mode{
+            background-color: rgb(34, 34, 46);
+        }
+
+        #switcher-container {
+            display: flex;
+            background-color: rgb(20, 20, 20);
+            border-radius: 50%;
+            padding: 0.25rem;
+            width: 10rem;
+            justify-content:space-between;
+        }
+
+
+        button{
+            width: 2rem;
+            height: 2rem;
+            border-radius: 100%;            
+            cursor: pointer;
+            border: 0;
+            transition: all 400ms;
+        }
+
+        .button-wrapper{
+            position: absolute;
+            z-index: 22;
+            display: flex;
+            justify-content: left;
+            /* background-color: red; */
+            width: 10rem;
+            transition: all 400ms;
+        }
+
+
+        div.button-wrapper.sidded{
+            justify-content: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="h1-container">
+            <h1>Theme Switcher</h1>
+        </div>
+        <div id="switcher-container">
+            <div class="icon-wrapper">
+                <img src="assets/moon.svg" alt="">
+            </div>
+            <div class="icon-wrapper">
+                <img src="assets/sun.svg" alt="">
+            </div>
+            <div class="button-wrapper">
+                <button class="circle-switcher"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btnSwitcher = document.querySelector("button.circle-switcher");
+        btnSwitcher.addEventListener("click",() => {
+            const container = document.querySelector("div.container");
+            container.classList.toggle("dark-mode");
+            const btnContainer = document.querySelector("div.button-wrapper");
+            btnContainer.classList.toggle("sidded");
+        })
+    </script>
+</body>
+</html>
