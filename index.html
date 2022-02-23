@@ -12,6 +12,9 @@
             box-sizing: border-box;
             padding: 0;
             font-family: "ui system", sans-serif;
+            text-decoration: none;
+            color: rgb(218, 156, 218); 
+            user-select: none; 
         }
         .container{
             width: 100%;
@@ -20,8 +23,9 @@
             align-items: center;
             flex-direction: column;
             justify-content: center;
-            background-color: beige;
+            background-color: rgb(224, 224, 212);
             color: rgb(218, 156, 218);
+            transition: all 400ms;
         }
 
         div.dark-mode{
@@ -29,8 +33,9 @@
             color:deeppink;
         }
 
-        div.dark-mode h1{
+        div.dark-mode h1,a.dark-mode{
             text-shadow: 1px 0 10px deeppink;
+            color:deeppink
         }
 
         #switcher-container {
@@ -46,6 +51,7 @@
         h1{
             margin-bottom: 1rem;
             font-size: 3rem;
+            text-align: center;
         }
         img{
             width: 2.4rem;
@@ -59,7 +65,7 @@
             cursor: pointer;
             border: 0;
             transition: all 400ms;
-            background-color: #ff1493;
+            background-color: rgb(218, 156, 218);;
         }
 
         .button-wrapper{
@@ -76,6 +82,14 @@
         button.sidded{
             margin-left: 40%;
             background-color: rgb(216, 216, 216);
+        }
+
+        footer{
+            position: absolute;
+            top: 39rem;
+        }
+        a{
+            font-weight: bold;
         }
     </style>
 </head>
@@ -95,16 +109,31 @@
                 <button class="circle-switcher"></button>
             </div>
         </div>
+
+        <footer>
+            <p>Made by: <a id="user-link" href="https://github.com/h3nrey">Pedro Novaes</a></p>
+        </footer>
     </div>
 
     <script>
         const btnSwitcher = document.querySelector("button.circle-switcher");
-        btnSwitcher.addEventListener("click",() => {
-            const container = document.querySelector("div.container");
-            container.classList.toggle("dark-mode");
-            const btnContainer = document.querySelector("div.button-wrapper");
-            btnSwitcher.classList.toggle("sidded");
-        })
+        const container = document.querySelector("div.container");
+        const btnContainer = document.querySelector("div.button-wrapper");
+        const userLink = document.querySelector("a#user-link");
+
+        function SwitchTheme() {
+            [container,userLink].forEach(element => {
+                ToggleClass(element,"dark-mode");
+            })
+            ToggleClass(btnSwitcher, "sidded");            
+        }
+
+        function ToggleClass(element, id) {
+            element.classList.toggle(id)
+        }
+
+        btnSwitcher.addEventListener("click",SwitchTheme)
+
     </script>
 </body>
 </html>
